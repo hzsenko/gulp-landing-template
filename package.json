@@ -1,0 +1,13 @@
+{
+  "name": "flow",
+  "version": "1.0.0",
+  "description": "second app",
+  "author": "hzsenko",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^3.0.3",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-less": "^3.3.0",
+    "gulp-rename": "^1.2.2"
+  }
+}
