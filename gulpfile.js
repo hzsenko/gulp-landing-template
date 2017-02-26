@@ -64,6 +64,11 @@ gulp.task('less', function(){
 		.pipe(rename({suffix: ".min"}))
 		.pipe(gulp.dest('app/css'));
 	});
+
+	var fontello = gulp.src('app/fonts/fontello/css/fontello.css')
+		.pipe(cleanCSS())
+		.pipe(rename({suffix:".min"}))
+		.pipe(gulp.dest('app/css'));
 });
 
 // js library
@@ -88,7 +93,8 @@ gulp.task('js-common', function(){
 });
 
 
-gulp.task('build',['clear','img','less','js-libs','js-common'], function(){
+//build
+gulp.task('build',['clear','icon','img','less','js-libs','js-common'], function(){
 	var lessBuild = gulp.src('app/less/**/*.less')
 		.pipe(gulp.dest('dist/less'));
 
@@ -108,7 +114,11 @@ gulp.task('build',['clear','img','less','js-libs','js-common'], function(){
 
 //watch
 gulp.task('watch', ['less', 'js-libs','js-common'], function(){
-	gulp.watch('app/less/template/**/*.less', ['less']);
+	gulp.watch(
+		[
+			'app/less/template/**/*.less',
+			'app/less/admin/**/*.less'
+		], ['less']);
 	gulp.watch('app/js/**/*.js', ['js-common']);
 });
 
