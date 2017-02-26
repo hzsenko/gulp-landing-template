@@ -10,7 +10,8 @@ var gulp = require('gulp'),
 	del = require('del'),
 	imagemMin = require('gulp-imagemin'),
 	pngquant = require('imagemin-pngquant'),
-	cache = require('gulp-cache');
+	cache = require('gulp-cache'),
+	$ = require('gulp-load-plugins')()
 
 //clear
 gulp.task('clear', function(){
@@ -20,6 +21,17 @@ gulp.task('clear', function(){
 //clear cache
 gulp.task('clearCache', function(){
 	return cache.clearAll();
+});
+
+//icons
+gulp.task('icon', function(){
+	return gulp.src('config.json')
+		.pipe($.fontello({
+			font: 'fonts/fontello/fonts',
+			css: 'fonts/fontello/css',
+			assetsOnly: true
+		}))
+		.pipe(gulp.dest('app'))
 });
 
 gulp.task('img', function(){
