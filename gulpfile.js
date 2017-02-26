@@ -11,7 +11,8 @@ var gulp = require('gulp'),
 	imagemMin = require('gulp-imagemin'),
 	pngquant = require('imagemin-pngquant'),
 	cache = require('gulp-cache'),
-	$ = require('gulp-load-plugins')()
+	$ = require('gulp-load-plugins')(),
+	sftp = require('gulp-sftp');
 
 //clear
 gulp.task('clear', function(){
@@ -110,6 +111,17 @@ gulp.task('build',['clear','icon','img','less','js-libs','js-common'], function(
 	var htmlBuild = gulp.src('app/*.html')
 		.pipe(gulp.dest('dist'));
 
+});
+
+//production 
+gulp.task('sftp', function(){
+	return gulp.src('dist/**/*')
+		.pipe(sftp({
+			host: '',
+			user: '',
+			pass: '',
+			remotePath: ''
+		}));
 });
 
 //watch
